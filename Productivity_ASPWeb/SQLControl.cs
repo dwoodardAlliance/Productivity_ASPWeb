@@ -24,12 +24,32 @@ namespace Productivity_ASPWeb
 
         public SQLControl()
         {
+            if (GlobalVariables.logProd == 1)
+            {
+                GlobalVariables.strConnection = "ProductivityProdConnectionString";
+            }
+            else
+            {
+                GlobalVariables.strConnection = "ProductivityTestConnectionString";
+            }
         }
 
         public SQLControl(string connectionstring)
         {
+            if (GlobalVariables.logProd == 1)
+            {
+                GlobalVariables.strConnection = "ProductivityProdConnectionString";
+            }
+            else
+            {
+                GlobalVariables.strConnection = "ProductivityTestConnectionString";
+            }
+
+            connectionstring = GlobalVariables.strConnection;
+            connectionstring = "Data Source=mssql.alliancehs.org;Initial Catalog=Productivity;Integrated Security=True;Connection Timeout=1000;";
             dbconn = new SqlConnection(connectionstring);
         }
+
 
         public void ExecuteQuery(string Query)
         {
@@ -43,6 +63,8 @@ namespace Productivity_ASPWeb
             }
 
             dbconn.ConnectionString = System.Configuration.ConfigurationManager.ConnectionStrings[GlobalVariables.strConnection].ConnectionString;
+            dbconn.ConnectionString = "Data Source=mssql.alliancehs.org;Initial Catalog=Productivity;Integrated Security=True;Connection Timeout=1000;";
+
             recordcount = 0;
             exception = "";
             try
@@ -69,6 +91,7 @@ namespace Productivity_ASPWeb
             }
         }
 
+
         public void AddParam(string name, object value)
         {
             var NewParam = new SqlParameter(name, value);
@@ -79,19 +102,12 @@ namespace Productivity_ASPWeb
         {
             if (string.IsNullOrEmpty(exception))
                 return false;
-            if (Report == true)
- catch (Exception ex)
-                {
-                    DeleteExcelFile(FileUploadEvents.FileName);
-                    ScriptManager.RegisterStartupScript(Page, GetType(), "script1", "alert('error occured:" + ex.Message.ToString() + "');", true)
-                    return;
-                }
-            ClientScriptManager.RegisterOnSubmitStatement(Me.GetType(), "ConfirmSubmit", exception)
-                ScriptManager.RegisterStartupScript(This, this.GetType(), Guid.NewGuid().ToString("N"), "alert(exception);", true)
-            ScriptManager.RegisterStartupScript(Page, this.GetType(), "alert", "alert(exception);", true)
-            Page.ClientScript.RegisterStartupScript(this.GetType(), "scriptkey", "alert(exception);")
-            //Interaction.MsgBox(exception, MsgBoxStyle.Critical, "Exception:");
-            //Response.Write(@"<script language='javascript'>alert(exception)</script>");
+            else
+            //if (Report == true) 
+            //ClientScriptManager.RegisterOnSubmitStatement(Me.GetType(), "ConfirmSubmit", exception);
+            //ScriptManager.RegisterStartupScript(Page, this.GetType(), "alert", "alert(exception);", true);
+            //ScriptManager.RegisterStartupScript(this, this.GetType(), Guid.NewGuid().ToString("N"), "alert(exception);", true);
+            //ScriptManager.RegisterStartupScript(This, this.GetType(), Guid.NewGuid().ToString("N"), "alert(exception);", true);
             return true;
         }
     }

@@ -17,13 +17,7 @@ namespace Productivity_ASPWeb
                 BtnSearch_Click(null, EventArgs.Empty);
         }
 
-        public class GlobalVariables
-        {
-            public static string strConnection;
-            public static int logProd = 1;
-        }
-
-        public SQLControl SQL = new SQLControl();
+        public SQLControl SQL = new SQLControl(GlobalVariables.strConnection);
         private int intSelectedRow;
 
         public void LoadGrid(string query = "")
@@ -52,92 +46,92 @@ namespace Productivity_ASPWeb
             if (dgvServices.Rows.Count > 0)
             {
                 DgvServices_SelectionChanged(null, EventArgs.Empty);
-            }
 
-            // 0 [Employee_ID]
-            dgvServices.Columns[0].HeaderText = "Credible ID";
-            // dgvServices.Columns[0].Width = 50;
-            // 1 [Employee_Name]
-            dgvServices.Columns[1].HeaderText = "Employee Name";
-            // dgvServices.Columns[1].Width = 50;
-            // 2 [CPT_Code]
-            dgvServices.Columns[2].HeaderText = "CPT Code";
-            // dgvServices.Columns[2].Width = 50;
-            // 3 [CPT_Modifier]
-            dgvServices.Columns[3].HeaderText = "CPT Modifier";
-            // dgvServices.Columns[3].Width = 50;
-            // 4 [Client_ID]
-            dgvServices.Columns[4].HeaderText = "Client ID";
-            // dgvServices.Columns[4].Width = 75;
-            // 5 [Client_Name]
-            dgvServices.Columns[5].HeaderText = "Client Name";
-            // dgvServices.Columns[5].Width = 130;
-            // 6 [Service_ID]
-            dgvServices.Columns[6].HeaderText = "Service ID";
-            // dgvServices.Columns[6].Width = 130;
-            // 7 [Service_Date]
-            dgvServices.Columns[7].HeaderText = "Service Date";
-            // dgvServices.Columns[7].Width = 60;
-            // 8 [Service_Type]
-            dgvServices.Columns[8].HeaderText = "Service Type";
-            // dgvServices.Columns[8].Width = 55;
-            // 9 [Program]
-            dgvServices.Columns[9].HeaderText = "Program";
-            // dgvServices.Columns[9].Width = 120;
-            // 10[Location]
-            dgvServices.Columns[10].HeaderText = "Location";
-            // dgvServices.Columns[10].Width = 120;
-            // 11[Merged_Units]
-            dgvServices.Columns[11].HeaderText = "Units";
-            // dgvServices.Columns[11].Width = 50;
-            // 12[Merged_Duration]
-            dgvServices.Columns[12].HeaderText = "Duration";
-            // dgvServices.Columns[12].Width = 50;
-            // 13[RecordActive]
-            dgvServices.Columns[13].HeaderText = "Record Active";
-            // dgvServices.Columns[13].Width = 50;
-            // 14[CreatedBy]
-            dgvServices.Columns[14].Visible = false;
-            // 15[CreateDate]
-            dgvServices.Columns[15].Visible = false;
-            // 16[ModifiedBy]
-            dgvServices.Columns[16].Visible = false;
-            // 17[ModifiedDate]
-            dgvServices.Columns[17].Visible = false;
-            if (dgvServices.Rows.Count > 0)
-            {
-                if (dgvServices.Rows.Count >= intSelectedRow)
+                // 0 [Employee_ID]
+                dgvServices.Columns[0].HeaderText = "Credible ID";
+                // dgvServices.Columns[0].Width = 50;
+                // 1 [Employee_Name]
+                dgvServices.Columns[1].HeaderText = "Employee Name";
+                // dgvServices.Columns[1].Width = 50;
+                // 2 [CPT_Code]
+                dgvServices.Columns[2].HeaderText = "CPT Code";
+                // dgvServices.Columns[2].Width = 50;
+                // 3 [CPT_Modifier]
+                dgvServices.Columns[3].HeaderText = "CPT Modifier";
+                // dgvServices.Columns[3].Width = 50;
+                // 4 [Client_ID]
+                dgvServices.Columns[4].HeaderText = "Client ID";
+                // dgvServices.Columns[4].Width = 75;
+                // 5 [Client_Name]
+                dgvServices.Columns[5].HeaderText = "Client Name";
+                // dgvServices.Columns[5].Width = 130;
+                // 6 [Service_ID]
+                dgvServices.Columns[6].HeaderText = "Service ID";
+                // dgvServices.Columns[6].Width = 130;
+                // 7 [Service_Date]
+                dgvServices.Columns[7].HeaderText = "Service Date";
+                // dgvServices.Columns[7].Width = 60;
+                // 8 [Service_Type]
+                dgvServices.Columns[8].HeaderText = "Service Type";
+                // dgvServices.Columns[8].Width = 55;
+                // 9 [Program]
+                dgvServices.Columns[9].HeaderText = "Program";
+                // dgvServices.Columns[9].Width = 120;
+                // 10[Location]
+                dgvServices.Columns[10].HeaderText = "Location";
+                // dgvServices.Columns[10].Width = 120;
+                // 11[Merged_Units]
+                dgvServices.Columns[11].HeaderText = "Units";
+                // dgvServices.Columns[11].Width = 50;
+                // 12[Merged_Duration]
+                dgvServices.Columns[12].HeaderText = "Duration";
+                // dgvServices.Columns[12].Width = 50;
+                // 13[RecordActive]
+                dgvServices.Columns[13].HeaderText = "Record Active";
+                // dgvServices.Columns[13].Width = 50;
+                // 14[CreatedBy]
+                dgvServices.Columns[14].Visible = false;
+                // 15[CreateDate]
+                dgvServices.Columns[15].Visible = false;
+                // 16[ModifiedBy]
+                dgvServices.Columns[16].Visible = false;
+                // 17[ModifiedDate]
+                dgvServices.Columns[17].Visible = false;
+                if (dgvServices.Rows.Count > 0)
                 {
-                    dgvServices.SelectRow(intSelectedRow);
-                    dgvServices.SelectedIndex = intSelectedRow;
-                    dgvServices.SelectedRow.Focus();
-                    //dgvServices.CurrentCell = dgvServices.Rows[intSelectedRow].Cells[1];
-                    //dgvServices.FirstDisplayedScrollingRowIndex = dgvServices.SelectedRow.RowIndex;
-                    DisplayValues();
-                  //  EnableButtons();
+                    if (dgvServices.Rows.Count >= intSelectedRow)
+                    {
+                        dgvServices.SelectRow(intSelectedRow);
+                        dgvServices.SelectedIndex = intSelectedRow;
+                        dgvServices.SelectedRow.Focus();
+                        //dgvServices.CurrentCell = dgvServices.Rows[intSelectedRow].Cells[1];
+                        //dgvServices.FirstDisplayedScrollingRowIndex = dgvServices.SelectedRow.RowIndex;
+                        DisplayValues();
+                        //  EnableButtons();
+                    }
                 }
-            }
-            else
-            {
-                intSelectedRow = dgvServices.Rows.Count;
-                txtEmployee_ID.Text = "";
-                txtEmployee_Name.Text = "";
-                txtCPT_Code.Text = "";
-                txtCPT_Modifier.Text = "";
-                txtClient_ID.Text = "";
-                txtClient_Name.Text = "";
-                txtService_ID.Text = "";
-                txtService_Date.Text = "";
-                txtService_Type.Text = "";
-                txtProgram.Text = "";
-                txtLocation.Text = "";
-                txtMerged_Units.Text = "";
-                txtMerged_Duration.Text = "";
-                txtCreatedBy.Text = "";
-                txtCreateDate.Text = "";
-                txtModifiedBy.Text = "";
-                txtModifiedDate.Text = "";
-                chkbxRecordActive.Checked = false;
+                else
+                {
+                    intSelectedRow = dgvServices.Rows.Count;
+                    txtEmployee_ID.Text = "";
+                    txtEmployee_Name.Text = "";
+                    txtCPT_Code.Text = "";
+                    txtCPT_Modifier.Text = "";
+                    txtClient_ID.Text = "";
+                    txtClient_Name.Text = "";
+                    txtService_ID.Text = "";
+                    txtService_Date.Text = "";
+                    txtService_Type.Text = "";
+                    txtProgram.Text = "";
+                    txtLocation.Text = "";
+                    txtMerged_Units.Text = "";
+                    txtMerged_Duration.Text = "";
+                    txtCreatedBy.Text = "";
+                    txtCreateDate.Text = "";
+                    txtModifiedBy.Text = "";
+                    txtModifiedDate.Text = "";
+                    chkbxRecordActive.Checked = false;
+                }
             }
         }
 
@@ -169,17 +163,18 @@ namespace Productivity_ASPWeb
             }
             else 
             {
-                LoadGrid(@"select * from Services 
-                            where (@Employee_ID = '' or Employee_ID = @Employee_ID)
-                            and (@Employee_Name = '' or Employee_Name like '%' + @Employee_Name + '%')
-                            and (@Program = '' or Program like '%' + @Program + '%')
-                            and (@Service_Date = '' or Service_Date = @Service_Date)
-                            and (@CPT_Code = '' or CPT_Code = @CPT_Code)
-                            and (@Location = '' or Location like '%' + @Location + '%')                            
-                            order by Employee_Name, Service_Date
-                        ;");
+                LoadGrid(@"select * from Services where (@Employee_ID = '' or Employee_ID = @Employee_ID) and (@Employee_Name = '' or Employee_Name like '%' + @Employee_Name + '%') and (@Program = '' or Program like '%' + @Program + '%') and (@Service_Date = '' or Service_Date = @Service_Date) and (@CPT_Code = '' or CPT_Code = @CPT_Code) and (@Location = '' or Location like '%' + @Location + '%') order by Employee_Name, Service_Date;");
+                //LoadGrid(@"select * from Services 
+                //            where (@Employee_ID = '' or Employee_ID = @Employee_ID)
+                //            and (@Employee_Name = '' or Employee_Name like '%' + @Employee_Name + '%')
+                //            and (@Program = '' or Program like '%' + @Program + '%')
+                //            and (@Service_Date = '' or Service_Date = @Service_Date)
+                //            and (@CPT_Code = '' or CPT_Code = @CPT_Code)
+                //            and (@Location = '' or Location like '%' + @Location + '%')                            
+                //            order by Employee_Name, Service_Date
+                //        ;");
             }
-            throw new NotImplementedException();
+            //throw new NotImplementedException();
         }
 
         private void DisplayValues()

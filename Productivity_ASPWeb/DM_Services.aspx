@@ -93,8 +93,6 @@
             <asp:Panel ID="pnlGrid" runat="server" GroupingText="Services Table" Height="489px">
                 <asp:GridView ID="dgvServices" runat="server">
                 </asp:GridView>
-                <asp:ScriptManager ID="ScriptManager2" runat="server">
-                </asp:ScriptManager>
             </asp:Panel>
         </div>
     </form>

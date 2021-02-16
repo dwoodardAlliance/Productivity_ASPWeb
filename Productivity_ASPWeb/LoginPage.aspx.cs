@@ -23,11 +23,4 @@ namespace Productivity_ASPWeb
 
         }
     }
-
-    public class GlobalVariables
-    {
-        public static string strConnection;
-        public static int logProd = 1;
-    }
-
 }
